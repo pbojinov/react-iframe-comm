@@ -32,8 +32,8 @@ class IframeCommunication extends Component {
         }
     }
     render() {
-        const { attributes: { src } } = this.props;
-        return <iframe src={src} onLoad={this.handleReady} />;
+        const { attributes: { src, width } } = this.props;
+        return <iframe src={src} onLoad={this.handleReady} width={width} />;
     }
 }
 
@@ -42,13 +42,13 @@ IframeCommunication.propTypes = {
         // https://developer.mozilla.org/en-US/docs/Web/HTML/Element/iframe#Attributes
         allowfullscreen: PropTypes.string,
         frameborder: PropTypes.string,
-        height: PropTypes.string,
+        height: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
         name: PropTypes.string,
         referrerpolicy: PropTypes.string,
         scrolling: PropTypes.string,
         sandbox: PropTypes.string,
         src: PropTypes.string.isRequired,
-        width: PropTypes.string
+        width: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
     }),
     onReceiveMessage: PropTypes.func,
     onReady: PropTypes.func,
