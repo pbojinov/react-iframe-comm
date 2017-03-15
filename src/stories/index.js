@@ -16,6 +16,13 @@ storiesOf("Welcome", module).add("to Storybook", () => (
 //   ));
 
 storiesOf("IframeCommunication", module).add("with just src", () => {
-    const src = "https://pbojinov.github.io/iframe-communication/iframe.html";
-    return <IframeCommunication src={src} />;
+    const attributes = {
+        src: "https://pbojinov.github.io/iframe-communication/iframe.html"
+    };
+    const handleOnReady = () => {
+        console.log("handleOnReady");
+    };
+    return (
+        <IframeCommunication attributes={attributes} onReady={handleOnReady} />
+    );
 });

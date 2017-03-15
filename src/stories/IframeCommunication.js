@@ -3,7 +3,8 @@ import React, { Component, PropTypes } from "react";
 class IframeCommunication extends Component {
     constructor() {
         super();
-        this.receiveMessage = receiveMessage.bind(this);
+        this.receiveMessage = this.receiveMessage.bind(this);
+        this.handleReady = this.handleReady.bind(this);
     }
     componentDidMount() {
         console.log("componentDidMount");
