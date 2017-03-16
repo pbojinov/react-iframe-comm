@@ -1,4 +1,4 @@
-React Iframe Comm
+React iFrame communication
 ============
 
 > A React component for communicating between a parent window and an iframe.

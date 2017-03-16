@@ -15,24 +15,18 @@ class IframeComm extends Component {
         window.removeEventListener("message", this.onReceiveMessage, false);
     }
     componentWillReceiveProps(nextProps) {
-        // console.log("componentWillReceiveProps");
-        // console.log("this", this.props.postMessageData);
-        // console.log("next", nextProps.postMessageData);
         if (this.props.postMessageData !== nextProps.postMessageData) {
             // send a message if postMessageData changed
             this.sendMessage(nextProps.postMessageData);
         }
     }
     onReceiveMessage(event) {
-        // console.log("onReceiveMessage");
-        // console.log(event.data);
         const { handleReceiveMessage } = this.props;
         if (handleReceiveMessage) {
             handleReceiveMessage(event);
         }
     }
     onLoad() {
-        // console.log("handleReady");
         const { handleReady } = this.props;
         if (handleReady) {
             handleReady();
