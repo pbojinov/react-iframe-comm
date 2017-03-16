@@ -1,5 +1,5 @@
 import React from "react";
-import IframeCommunication from "./IframeCommunication";
+import IframeComm from "../IframeComm";
 import { storiesOf, action, linkTo } from "@kadira/storybook";
 import { WithNotes } from "@kadira/storybook-addon-notes";
 import {
@@ -22,7 +22,7 @@ stories.add("simple example", () => {
     };
     return (
         <span>
-            <IframeCommunication
+            <IframeComm
                 attributes={object("attributes", attributes)}
                 postMessageData={text("postMessageData", "cats")}
                 handleReceiveMessage={action("handleReceiveMessage")}

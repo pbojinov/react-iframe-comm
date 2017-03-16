@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from "react";
 
-class IframeCommunication extends Component {
+class IframeComm extends Component {
     constructor() {
         super();
         this.onReceiveMessage = this.onReceiveMessage.bind(this);
@@ -68,26 +68,22 @@ class IframeCommunication extends Component {
             attributes
         );
         return (
-            <span>
-
-                <iframe
-                    id="_iframe"
-                    ref={el => {
-                        this._frame = el;
-                    }}
-                    {...mergedAttributes}
-                />
-                {this.props.postMessageData}
-            </span>
+            <iframe
+                id="_iframe"
+                ref={el => {
+                    this._frame = el;
+                }}
+                {...mergedAttributes}
+            />
         );
     }
 }
 
-IframeCommunication.defaultProps = {
+IframeComm.defaultProps = {
     targetOrigin: "*"
 };
 
-IframeCommunication.propTypes = {
+IframeComm.propTypes = {
     /*
         Iframe Attributes
         https://developer.mozilla.org/en-US/docs/Web/HTML/Element/iframe#Attributes
@@ -128,18 +124,7 @@ IframeCommunication.propTypes = {
     targetOrigin: PropTypes.string
 };
 
-export default IframeCommunication;
-
-/*
-const { data: { topic } } = event;
-switch (topic) {
-    case 'setScroll':
-        // do someething
-        break;
-    default:
-        break;
-}
- */
+export default IframeComm;
 
 // ----
 // TODO: handle multiple iframes on one page with the listen code
