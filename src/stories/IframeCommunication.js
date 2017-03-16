@@ -70,13 +70,17 @@ class IframeCommunication extends Component {
         );
         console.log(this.props);
         return (
-            <iframe
-                id="_iframe"
-                ref={el => {
-                    this._frame = el;
-                }}
-                {...mergedAttributes}
-            />
+            <span>
+
+                <iframe
+                    id="_iframe"
+                    ref={el => {
+                        this._frame = el;
+                    }}
+                    {...mergedAttributes}
+                />
+                {this.props.postMessageData}
+            </span>
         );
     }
 }
