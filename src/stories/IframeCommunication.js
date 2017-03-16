@@ -3,16 +3,16 @@ import React, { Component, PropTypes } from "react";
 class IframeCommunication extends Component {
     constructor() {
         super();
-        this.receiveMessage = this.receiveMessage.bind(this);
-        this.handleReady = this.handleReady.bind(this);
+        this.onReceiveMessage = this.onReceiveMessage.bind(this);
+        this.onLoad = this.onLoad.bind(this);
         this.sendMessage = this.sendMessage.bind(this);
     }
     componentDidMount() {
-        window.addEventListener("message", this.receiveMessage);
-        this._frame.addEventListener("load", this.handleReady);
+        window.addEventListener("message", this.onReceiveMessage);
+        this._frame.addEventListener("load", this.onLoad);
     }
     componentWillUnmount() {
-        window.removeEventListener("message", this.receiveMessage, false);
+        window.removeEventListener("message", this.onReceiveMessage, false);
     }
     componentWillReceiveProps(nextProps) {
         // console.log("componentWillReceiveProps");
@@ -23,19 +23,19 @@ class IframeCommunication extends Component {
             this.sendMessage(nextProps.postMessageData);
         }
     }
-    receiveMessage(event) {
-        // console.log("receiveMessage");
+    onReceiveMessage(event) {
+        // console.log("onReceiveMessage");
         // console.log(event.data);
-        const { onReceiveMessage } = this.props;
-        if (onReceiveMessage) {
-            onReceiveMessage(event);
+        const { handleReceiveMessage } = this.props;
+        if (handleReceiveMessage) {
+            handleReceiveMessage(event);
         }
     }
-    handleReady() {
+    onLoad() {
         // console.log("handleReady");
-        const { onReady } = this.props;
-        if (onReady) {
-            onReady();
+        const { handleReady } = this.props;
+        if (handleReady) {
+            handleReady();
             this.sendMessage();
         }
     }
@@ -112,8 +112,8 @@ IframeCommunication.propTypes = {
         src: PropTypes.string.isRequired,
         width: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
     }),
-    onReceiveMessage: PropTypes.func,
-    onReady: PropTypes.func,
+    handleReceiveMessage: PropTypes.func,
+    handleReady: PropTypes.func,
     /*
         You can pass it anything you want, we'll serialize to a string
         preferablly use a simple string message or an object.
