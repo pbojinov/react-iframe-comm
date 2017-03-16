@@ -19,11 +19,11 @@ import IframeComm from 'react-iframe-comm';
 ## Usage
 
 ```javascript
-import IframeComm from 'react-iframe-comm';
-import React from 'react';
+import React from "react";
+import IframeComm from "react-iframe-comm";
 
 const Demo = ({}) => {
-
+    
     // the html attributes to create the iframe with
     // make sure you use camelCase attribute names
     const attributes = {
@@ -34,18 +34,18 @@ const Demo = ({}) => {
 
     // the postMessage data you want to send to your iframe
     // it will be send after the iframe has loaded
-    const postMessageData = 'hello iframe';
+    const postMessageData = "hello iframe";
 
     // parent received a message from iframe
     const onReceiveMessage = () => {
-        console.log('handleReceiveMessage');
+        console.log("handleReceiveMessage");
     };
 
     // iframe has loaded
     const onReady = () => {
-        console.log('onReady');
+        console.log("onReady");
     };
-    
+
     return (
         <IframeComm
             attributes={attributes}
@@ -54,7 +54,8 @@ const Demo = ({}) => {
             handleReceiveMessage={onReceiveMessage}
         />
     );
-}
+};
 
 export default Demo;
+
 ```
