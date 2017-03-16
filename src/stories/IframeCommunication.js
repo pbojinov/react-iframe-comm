@@ -5,6 +5,7 @@ class IframeCommunication extends Component {
         super();
         this.receiveMessage = this.receiveMessage.bind(this);
         this.handleReady = this.handleReady.bind(this);
+        this.sendMessage = this.sendMessage.bind(this);
     }
     componentDidMount() {
         window.addEventListener("message", this.receiveMessage);
@@ -14,7 +15,12 @@ class IframeCommunication extends Component {
         window.removeEventListener("message", this.receiveMessage, false);
     }
     componentWillReceiveProps(nextProps) {
-        // console.log("componentWillReceiveProps");
+        console.log("componentWillReceiveProps");
+        if (this.props.postMessageData !== nextProps.postMessageData) {
+            // send a message
+            console.log("send a new message");
+            // console.log(postMessageData);
+        }
     }
     receiveMessage(event) {
         // console.log("receiveMessage");
@@ -24,10 +30,17 @@ class IframeCommunication extends Component {
             onReceiveMessage(event);
         }
     }
+    handleReady() {
+        console.log("handleReady");
+        const { onReady } = this.props;
+        if (onReady) {
+            onReady();
+            this.sendMessage();
+        }
+    }
     serializePostMessageData(data) {
         // serialize data since postMessage accepts a string only message
         if (typeof data === "object") {
-            data.data = Math.random();
             return JSON.stringify(data);
         } else if (typeof data === "string") {
             return data;
@@ -35,22 +48,17 @@ class IframeCommunication extends Component {
             return `${data}`;
         }
     }
-    handleReady() {
-        console.log("handleReady");
-        const { onReady, postMessageData } = this.props;
-        if (onReady) {
-            onReady();
-            if (postMessageData) {
-                const data = this.serializePostMessageData(postMessageData);
-                this._frame.contentWindow.postMessage(data, "*");
-            }
-        }
+    sendMessage() {
+        const { postMessageData, targetOrigin } = this.props;
+        const serializedData = this.serializePostMessageData(postMessageData);
+        this._frame.contentWindow.postMessage(serializedData, targetOrigin);
     }
     render() {
         const { attributes } = this.props;
 
         // define some sensible defaults for our iframe attributes
         const defaultAttributes = {
+            allowFullScreen: false,
             frameBorder: 0
         };
 
@@ -73,6 +81,10 @@ class IframeCommunication extends Component {
     }
 }
 
+IframeCommunication.defaultProps = {
+    targetOrigin: "*"
+};
+
 IframeCommunication.propTypes = {
     /*
         Iframe Attributes
@@ -92,6 +104,7 @@ IframeCommunication.propTypes = {
         height: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
         name: PropTypes.string,
         scrolling: PropTypes.string,
+        // https://www.html5rocks.com/en/tutorials/security/sandboxed-iframes/
         sandbox: PropTypes.string,
         srcDoc: PropTypes.string,
         src: PropTypes.string.isRequired,
@@ -106,8 +119,11 @@ IframeCommunication.propTypes = {
         in the iframe so you can parse it accordingly.
      */
     postMessageData: PropTypes.any,
-    topic: PropTypes.string
-    // ? targetOrigin: PropTypes.string,
+    topic: PropTypes.string,
+    /*
+        Always provide a specific targetOrigin, not *, if you know where the other window's document should be located. Failing to provide a specific target discloses the data you send to any interested malicious site.
+     */
+    targetOrigin: PropTypes.string
 };
 
 export default IframeCommunication;

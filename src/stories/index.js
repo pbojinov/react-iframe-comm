@@ -18,30 +18,32 @@ storiesOf("Welcome", module).add("to Storybook", () => (
 storiesOf("IframeCommunication", module).add("with just src", () => {
     const attributes = {
         src: "https://pbojinov.github.io/iframe-communication/iframe.html",
-        // src: "http://127.0.0.1:8080/iframe.html",
+        // src: "http://127.0.0.1:8080/examples/iframe.html",
         width: "100%",
         height: "175"
     };
     const handleOnReady = () => {
         console.log("handleOnReady");
     };
-    const postMessageData = {
+    let postMessageData = {
         topic: "hello",
-        data: "..."
+        data: Math.random()
     };
     const sendIframeMessage = () => {
-        console.log("sending...");
-        // const data = this.serializePostMessageData(this.props.postMessageData);
-        // this._frame.contentWindow.postMessage(data, "*");
+        console.log("sending message to iframe...");
+        postMessageData = {
+            topic: "hi again",
+            data: Math.random()
+        };
     };
     return (
         <div>
-            <button onClick={sendIframeMessage}>Send Message</button>
             <IframeCommunication
                 attributes={attributes}
                 postMessageData={postMessageData}
                 onReady={handleOnReady}
             />
+            <button onClick={sendIframeMessage}>Send message to iframe</button>
         </div>
     );
 });
