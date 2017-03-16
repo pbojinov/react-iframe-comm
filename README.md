@@ -1,6 +1,20 @@
+React Iframe Comm
+============
+
 > A React component for communicating between a parent window and an iframe.
 
-# Demo
+## Demo
+
+Live Demo: [https://pbojinov.github.io/react-iframe-comm/](https://pbojinov.github.io/react-iframe-comm/)
+
+Or locally run:
+
+```
+npm install
+npm run storybook
+```
+
+Then open [http://localhost:9009/](http://localhost:9009/) in your browser.
 
 
 ## Installation
@@ -58,3 +72,7 @@ const Demo = ({}) => {
 export default Demo;
 
 ```
+
+## License
+
+The MIT License (MIT) - 2017
