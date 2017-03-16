@@ -24,7 +24,7 @@ class IframeCommunication extends Component {
         }
     }
     receiveMessage(event) {
-        console.log("receiveMessage");
+        // console.log("receiveMessage");
         // console.log(event.data);
         const { onReceiveMessage } = this.props;
         if (onReceiveMessage) {
@@ -32,7 +32,7 @@ class IframeCommunication extends Component {
         }
     }
     handleReady() {
-        console.log("handleReady");
+        // console.log("handleReady");
         const { onReady } = this.props;
         if (onReady) {
             onReady();
