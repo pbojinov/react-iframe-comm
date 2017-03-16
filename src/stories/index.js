@@ -17,12 +17,31 @@ storiesOf("Welcome", module).add("to Storybook", () => (
 
 storiesOf("IframeCommunication", module).add("with just src", () => {
     const attributes = {
-        src: "https://pbojinov.github.io/iframe-communication/iframe.html"
+        src: "https://pbojinov.github.io/iframe-communication/iframe.html",
+        // src: "http://127.0.0.1:8080/iframe.html",
+        width: "100%",
+        height: "175"
     };
     const handleOnReady = () => {
         console.log("handleOnReady");
     };
+    const postMessageData = {
+        topic: "hello",
+        data: "..."
+    };
+    const sendIframeMessage = () => {
+        console.log("sending...");
+        // const data = this.serializePostMessageData(this.props.postMessageData);
+        // this._frame.contentWindow.postMessage(data, "*");
+    };
     return (
-        <IframeCommunication attributes={attributes} onReady={handleOnReady} />
+        <div>
+            <button onClick={sendIframeMessage}>Send Message</button>
+            <IframeCommunication
+                attributes={attributes}
+                postMessageData={postMessageData}
+                onReady={handleOnReady}
+            />
+        </div>
     );
 });
