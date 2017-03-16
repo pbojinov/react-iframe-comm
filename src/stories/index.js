@@ -15,10 +15,11 @@ stories.addDecorator(withKnobs);
 
 stories.add("simple example", () => {
     const attributes = {
-        src: "https://pbojinov.github.io/iframe-communication/iframe.html",
+        // src: "https://pbojinov.github.io/iframe-communication/iframe.html",
         // src: "http://127.0.0.1:8080/public/iframe.html",
+        src: "http://127.0.0.1:8080/index.html",
         width: "100%",
-        height: "175"
+        height: 500
     };
     return (
         <span>
