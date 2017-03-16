@@ -16,14 +16,15 @@ class IframeCommunication extends Component {
     }
     componentWillReceiveProps(nextProps) {
         // console.log("componentWillReceiveProps");
+        // console.log("this", this.props.postMessageData);
+        // console.log("next", nextProps.postMessageData);
         if (this.props.postMessageData !== nextProps.postMessageData) {
-            // send a message
-            // console.log("send a new message");
-            // console.log(postMessageData);
+            // send a message if postMessageData changed
+            this.sendMessage(nextProps.postMessageData);
         }
     }
     receiveMessage(event) {
-        // console.log("receiveMessage");
+        console.log("receiveMessage");
         // console.log(event.data);
         const { onReceiveMessage } = this.props;
         if (onReceiveMessage) {
@@ -55,20 +56,17 @@ class IframeCommunication extends Component {
     }
     render() {
         const { attributes } = this.props;
-
         // define some sensible defaults for our iframe attributes
         const defaultAttributes = {
             allowFullScreen: false,
             frameBorder: 0
         };
-
         // then merge in the user's attributes with our defaults
         const mergedAttributes = Object.assign(
             {},
             defaultAttributes,
             attributes
         );
-        console.log(this.props);
         return (
             <span>
 

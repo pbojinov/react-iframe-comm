@@ -24,7 +24,7 @@ stories.add("simple example", () => {
         <span>
             <IframeCommunication
                 attributes={object("attributes", attributes)}
-                postMessageData={number("postMessageData", 12345)}
+                postMessageData={text("postMessageData", "cats")}
                 onReceiveMessage={action("onReceiveMessage")}
                 onReady={action("handleOnReady")}
             />
