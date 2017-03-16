@@ -1,7 +1,6 @@
-# React Iframe Communication
+> A React component for communicating between a parent window and an iframe.
 
 # Demo
-
 
 
 ## Installation
@@ -23,7 +22,7 @@ import React from "react";
 import IframeComm from "react-iframe-comm";
 
 const Demo = ({}) => {
-    
+
     // the html attributes to create the iframe with
     // make sure you use camelCase attribute names
     const attributes = {

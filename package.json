@@ -6,6 +6,7 @@
   "author": "Petar Bojinov",
   "license": "MIT",
   "dependencies": {
+    "@kadira/storybook-deployer": "^1.2.0",
     "react": "^15.4.2",
     "react-dom": "^15.4.2"
   },
@@ -22,6 +23,7 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "storybook": "start-storybook -p 9009 -s public",
-    "build-storybook": "build-storybook -s public"
+    "build-storybook": "build-storybook -s public",
+    "deploy-storybook": "storybook-to-ghpages"
   }
 }
