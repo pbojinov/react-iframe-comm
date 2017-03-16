@@ -7,13 +7,11 @@ import {
     boolean,
     number
 } from "@kadira/storybook-addon-knobs";
-import Welcome from "./Welcome";
+import Button from "./Button";
 import IframeCommunication from "./IframeCommunication";
 
-const stories = storiesOf("Welcome", module);
+const stories = storiesOf("Iframe Communication", module);
 stories.addDecorator(withKnobs);
-
-// stories.add("to Storybook", () => <Welcome showApp={linkTo("Button")} />);
 
 // Knobs for React props
 stories.add("with a button", () => (
@@ -31,15 +29,22 @@ stories.add("as dynamic variables", () => {
     return <div>{content}</div>;
 });
 
-// storiesOf('Button', module)
-//   .add('with text', () => (
-//     <Button onClick={action('clicked')}>Hello Button</Button>
-//   ))
-//   .add('with some emoji', () => (
-//     <Button onClick={action('clicked')}>😀 😎 👍 💯</Button>
-//   ));
+// Notes Example
+// storiesOf("Button", module)
+//     .add("with text", () => (
+//         <WithNotes
+//             notes={
+//                 "Here we use some emoji as the Button text. Isn't it look nice?"
+//             }
+//         >
+//             <Button onClick={action("clicked")}>Hello Button</Button>
+//         </WithNotes>
+//     ))
+//     .add("with some emoji", () => (
+//         <Button onClick={action("clicked")}>😀 😎 👍 💯</Button>
+//     ));
 
-stories.add("iframe comm example", () => {
+stories.add("simple exmaple", () => {
     const attributes = {
         src: "https://pbojinov.github.io/iframe-communication/iframe.html",
         // src: "http://127.0.0.1:8080/examples/iframe.html",
