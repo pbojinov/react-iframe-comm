@@ -15,16 +15,16 @@ class IframeCommunication extends Component {
         window.removeEventListener("message", this.receiveMessage, false);
     }
     componentWillReceiveProps(nextProps) {
-        console.log("componentWillReceiveProps");
+        // console.log("componentWillReceiveProps");
         if (this.props.postMessageData !== nextProps.postMessageData) {
             // send a message
-            console.log("send a new message");
+            // console.log("send a new message");
             // console.log(postMessageData);
         }
     }
     receiveMessage(event) {
         // console.log("receiveMessage");
-        console.log(event.data);
+        // console.log(event.data);
         const { onReceiveMessage } = this.props;
         if (onReceiveMessage) {
             onReceiveMessage(event);
