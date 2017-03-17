@@ -17,8 +17,8 @@ stories.add("simple example", () => {
     const attributes = {
         // src: "https://pbojinov.github.io/iframe-communication/iframe.html",
         // src: "http://127.0.0.1:8080/public/iframe.html",
-        // src: "http://127.0.0.1:8080/index.html?full_name=Petar%20Bojinov", // first add card
-        src: "http://127.0.0.1:8080/index.html?token=2hOVl5EDLi2O03Jb20sAUUGAk8m&last_four_digits=4242", // recache
+        src: "http://127.0.0.1:8080/index.html?full_name=Petar%20Bojinov", // first add card
+        // src: "http://127.0.0.1:8080/index.html?token=2hOVl5EDLi2O03Jb20sAUUGAk8m&last_four_digits=4242", // recache
         width: "100%",
         height: 500
     };
@@ -67,11 +67,7 @@ stories.add("simple example", () => {
                     data: {}
                 };
                 break;
-            case "handleInputFocus":
-                // do someething
-                const { inputName } = data;
-                // debugger;
-                break;
+
             case "handleError":
                 const { error } = data;
                 /*
@@ -84,6 +80,12 @@ stories.add("simple example", () => {
                     }]
                  */
                 break;
+            // ------------------------------------------
+            // NOT IN USE
+            // ------------------------------------------
+            // case "handleInputFocus":
+            //     const { inputName } = data;
+            //     break;
             default:
                 break;
         }
