@@ -21,7 +21,9 @@ Then open [http://localhost:9009/](http://localhost:9009/) in your browser.
 
 The easiest way to use React Iframe Communication is to install it from NPM.
 
-    npm install react-iframe-comm --save
+```
+npm install react-iframe-comm --save
+```
 
 At this point you can import `react-iframe-comm` in your application as follows:
 
@@ -42,7 +44,8 @@ const Demo = ({}) => {
     const attributes = {
         src: "https://pbojinov.github.io/iframe-communication/iframe.html",
         width: "100%",
-        height: "175"
+        height: "175",
+        frameBorder: 1, // show frame border just for fun...
     };
 
     // the postMessage data you want to send to your iframe
@@ -51,7 +54,7 @@ const Demo = ({}) => {
 
     // parent received a message from iframe
     const onReceiveMessage = () => {
-        console.log("handleReceiveMessage");
+        console.log("onReceiveMessage");
     };
 
     // iframe has loaded

@@ -1,9 +1,24 @@
 {
   "name": "react-iframe-comm",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A React component for communicating between a parent window and an iframe.",
   "main": "src/IframeComm.js",
-  "author": "Petar Bojinov",
+  "author": "Petar Bojinov <petarbojinov@gmail.com>",
+  "bugs": {
+    "url": "https://github.com/pbojinov/react-iframe-comm/issues"
+  },
+  "repository": {
+      "type": "git",
+      "url": "https://github.com/pbojinov/react-iframe-comm.git"
+    },
+  "keywords": [
+      "react",
+      "iframe",
+      "communication",
+      "comm",
+      "postMessage"
+      "react-component",
+    ],
   "license": "MIT",
   "dependencies": {
     "@kadira/storybook-deployer": "^1.2.0",
