@@ -16,7 +16,7 @@
       "iframe",
       "communication",
       "comm",
-      "postMessage"
+      "postMessage",
       "react-component"
     ],
   "license": "MIT",
