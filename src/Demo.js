@@ -1,5 +1,5 @@
 import React from "react";
-import IframeComm from "react-iframe-comm";
+import IframeComm from "react-iframe-comm"; // loads build file
 
 const Demo = ({}) => {
     // the html attributes to create the iframe with

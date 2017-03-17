@@ -81,10 +81,8 @@ IframeComm.propTypes = {
     /*
         Iframe Attributes
         https://developer.mozilla.org/en-US/docs/Web/HTML/Element/iframe#Attributes
-
         React Supported Attributes
         https://facebook.github.io/react/docs/dom-elements.html#all-supported-html-attributes
-
         Note: attributes are camelCase, not all lowercase as usually defined.
     */
     attributes: PropTypes.shape({
@@ -119,10 +117,3 @@ IframeComm.propTypes = {
 };
 
 export default IframeComm;
-
-// ----
-// TODO: handle multiple iframes on one page with the listen code
-// we only want to listen to this components messages, not others
-// ----
-// TODO: handle XDomain check for security purposes
-// ----
