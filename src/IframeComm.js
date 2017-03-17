@@ -62,13 +62,18 @@ class IframeComm extends Component {
             attributes
         );
         return (
-            <iframe
-                id="_iframe"
-                ref={el => {
-                    this._frame = el;
-                }}
-                {...mergedAttributes}
-            />
+            <span>
+                postMessageData:
+                {" "}
+                {`${JSON.stringify(this.props.postMessageData)}`}
+                <iframe
+                    id="_iframe"
+                    ref={el => {
+                        this._frame = el;
+                    }}
+                    {...mergedAttributes}
+                />
+            </span>
         );
     }
 }
