@@ -43,8 +43,11 @@ class IframeComm extends Component {
             return `${data}`;
         }
     }
-    sendMessage() {
-        const { postMessageData, targetOrigin } = this.props;
+    sendMessage(postMessageData) {
+        // Using postMessage data from props will result in a subtle but deadly bug,
+        // where old data from props is being sent instead of new postMessageData.
+        // This is because data sent from componentWillReceiveProps is not yet in props but only in nextProps.
+        const { targetOrigin } = this.props;
         const serializedData = this.serializePostMessageData(postMessageData);
         this._frame.contentWindow.postMessage(serializedData, targetOrigin);
     }
@@ -74,7 +77,8 @@ class IframeComm extends Component {
 }
 
 IframeComm.defaultProps = {
-    targetOrigin: "*"
+    targetOrigin: "*",
+    postMessageData: ""
 };
 
 IframeComm.propTypes = {
@@ -108,7 +112,7 @@ IframeComm.propTypes = {
         If you use an object, you need to follow the same naming convention
         in the iframe so you can parse it accordingly.
      */
-    postMessageData: PropTypes.any,
+    postMessageData: PropTypes.any.isRequired,
     topic: PropTypes.string,
     /*
         Always provide a specific targetOrigin, not *, if you know where the other window's document should be located. Failing to provide a specific target discloses the data you send to any interested malicious site.
