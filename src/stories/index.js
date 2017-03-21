@@ -18,16 +18,26 @@ stories.add("simple example", () => {
         src: "https://pbojinov.github.io/iframe-communication/iframe.html",
         // src: "http://127.0.0.1:8080/public/iframe.html",
         width: "100%",
-        height: "175"
+        height: "200"
     };
+    // the postMessage data you want to send to your iframe
+    // it will be send after the iframe has loaded
+    const postMessageData = {
+        message: "hello"
+    };
+
     return (
-        <span>
+        <WithNotes
+            notes={
+                `Look at the ACTION LOGGER tab to see events from the iframe. Such as handleReceiveMessage and handleReady.`
+            }
+        >
             <IframeComm
                 attributes={object("attributes", attributes)}
-                postMessageData={text("postMessageData", "cats")}
+                postMessageData={object("postMessageData", postMessageData)}
                 handleReceiveMessage={action("handleReceiveMessage")}
                 handleReady={action("handleOnReady")}
             />
-        </span>
+        </WithNotes>
     );
 });
