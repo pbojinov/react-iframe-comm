@@ -71,7 +71,11 @@ var IframeComm = function (_Component) {
 
             if (handleReady) {
                 handleReady();
-                this.sendMessage();
+
+                // TODO: Look into doing a syn-ack TCP-like handshake
+                //       to make sure iFrame is ready to REALLY accept messages, not just loaded.
+                // send intial props when iframe loads
+                this.sendMessage(this.props.postMessageData);
             }
         }
     }, {
@@ -88,10 +92,11 @@ var IframeComm = function (_Component) {
         }
     }, {
         key: "sendMessage",
-        value: function sendMessage() {
-            var _props = this.props,
-                postMessageData = _props.postMessageData,
-                targetOrigin = _props.targetOrigin;
+        value: function sendMessage(postMessageData) {
+            // Using postMessage data from props will result in a subtle but deadly bug,
+            // where old data from props is being sent instead of new postMessageData.
+            // This is because data sent from componentWillReceiveProps is not yet in props but only in nextProps.
+            var targetOrigin = this.props.targetOrigin;
 
             var serializedData = this.serializePostMessageData(postMessageData);
             this._frame.contentWindow.postMessage(serializedData, targetOrigin);
@@ -123,7 +128,8 @@ var IframeComm = function (_Component) {
 }(_react.Component);
 
 IframeComm.defaultProps = {
-    targetOrigin: "*"
+    targetOrigin: "*",
+    postMessageData: ""
 };
 
 IframeComm.propTypes = {
@@ -154,7 +160,7 @@ IframeComm.propTypes = {
         If you use an object, you need to follow the same naming convention
         in the iframe so you can parse it accordingly.
      */
-    postMessageData: _react.PropTypes.any,
+    postMessageData: _react.PropTypes.any.isRequired,
     topic: _react.PropTypes.string,
     /*
         Always provide a specific targetOrigin, not *, if you know where the other window's document should be located. Failing to provide a specific target discloses the data you send to any interested malicious site.
