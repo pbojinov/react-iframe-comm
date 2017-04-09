@@ -43,6 +43,7 @@ class IframeComm extends Component {
         if (!this.props.serializeMessage) {
             return data;
         }
+
         // To be on the safe side we can also ignore the browser's built-in serialization feature
         // and serialize the data manually.
         if (typeof data === "object") {
@@ -114,8 +115,18 @@ IframeComm.propTypes = {
         src: PropTypes.string.isRequired,
         width: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
     }),
+    
+    // Callback function called when iFrame sends the parent window a message.
     handleReceiveMessage: PropTypes.func,
+
+    /*    
+        Callback function called when iframe loads. 
+        We're simply listening to the iframe's `window.onload`.
+        To ensure communication code in your iframe is totally loaded,
+        you can implement a syn-ack TCP-like handshake using `postMessageData` and `handleReceiveMessage`.
+    */
     handleReady: PropTypes.func,
+    
     /*
         You can pass it anything you want, we'll serialize to a string
         preferablly use a simple string message or an object.
@@ -123,8 +134,14 @@ IframeComm.propTypes = {
         in the iframe so you can parse it accordingly.
      */
     postMessageData: PropTypes.any.isRequired,
+    
+    /*
+        Enable use of the browser's built-in structured clone algorithm for serialization
+        by settings this to `false`. 
+        Default is `true`, using our built in logic for serializing everything to a string.
+    */
     serializeMessage: PropTypes.bool,
-    topic: PropTypes.string,
+
     /*
         Always provide a specific targetOrigin, not *, if you know where the other window's document should be located. Failing to provide a specific target discloses the data you send to any interested malicious site.
      */
