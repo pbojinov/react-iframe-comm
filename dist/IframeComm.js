@@ -71,16 +71,24 @@ var IframeComm = function (_Component) {
 
             if (handleReady) {
                 handleReady();
-                // TODO: Look into doing a syn-ack TCP-like handshake
-                //       to make sure iFrame is ready to REALLY accept messages, not just loaded.
-                // send intial props when iframe loads
-                this.sendMessage(this.props.postMessageData);
             }
+            // TODO: Look into doing a syn-ack TCP-like handshake
+            //       to make sure iFrame is ready to REALLY accept messages, not just loaded.
+            // send intial props when iframe loads
+            this.sendMessage(this.props.postMessageData);
         }
     }, {
         key: "serializePostMessageData",
         value: function serializePostMessageData(data) {
-            // serialize data since postMessage accepts a string only message
+            // Rely on the browser's built-in structured clone algorithm for serialization of the
+            // message as described in
+            // https://developer.mozilla.org/en-US/docs/Web/API/Window/postMessage
+            if (!this.props.serializeMessage) {
+                return data;
+            }
+
+            // To be on the safe side we can also ignore the browser's built-in serialization feature
+            // and serialize the data manually.
             if ((typeof data === "undefined" ? "undefined" : _typeof(data)) === "object") {
                 return JSON.stringify(data);
             } else if (typeof data === "string") {
@@ -115,7 +123,6 @@ var IframeComm = function (_Component) {
             // then merge in the user's attributes with our defaults
             var mergedAttributes = Object.assign({}, defaultAttributes, attributes);
             return _react2.default.createElement("iframe", _extends({
-                id: "_iframe",
                 ref: function ref(el) {
                     _this2._frame = el;
                 }
@@ -127,6 +134,7 @@ var IframeComm = function (_Component) {
 }(_react.Component);
 
 IframeComm.defaultProps = {
+    serializeMessage: true,
     targetOrigin: "*",
     postMessageData: ""
 };
@@ -151,8 +159,18 @@ IframeComm.propTypes = {
         src: _react.PropTypes.string.isRequired,
         width: _react.PropTypes.oneOfType([_react.PropTypes.string, _react.PropTypes.number])
     }),
+
+    // Callback function called when iFrame sends the parent window a message.
     handleReceiveMessage: _react.PropTypes.func,
+
+    /*    
+        Callback function called when iframe loads. 
+        We're simply listening to the iframe's `window.onload`.
+        To ensure communication code in your iframe is totally loaded,
+        you can implement a syn-ack TCP-like handshake using `postMessageData` and `handleReceiveMessage`.
+    */
     handleReady: _react.PropTypes.func,
+
     /*
         You can pass it anything you want, we'll serialize to a string
         preferablly use a simple string message or an object.
@@ -160,7 +178,14 @@ IframeComm.propTypes = {
         in the iframe so you can parse it accordingly.
      */
     postMessageData: _react.PropTypes.any.isRequired,
-    topic: _react.PropTypes.string,
+
+    /*
+        Enable use of the browser's built-in structured clone algorithm for serialization
+        by settings this to `false`. 
+        Default is `true`, using our built in logic for serializing everything to a string.
+    */
+    serializeMessage: _react.PropTypes.bool,
+
     /*
         Always provide a specific targetOrigin, not *, if you know where the other window's document should be located. Failing to provide a specific target discloses the data you send to any interested malicious site.
      */
