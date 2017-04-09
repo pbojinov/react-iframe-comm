@@ -37,7 +37,14 @@ class IframeComm extends Component {
         this.sendMessage(this.props.postMessageData);
     }
     serializePostMessageData(data) {
-        // serialize data since postMessage accepts a string only message
+        // Rely on the browser's built-in structured clone algorithm for serialization of the
+        // message as described in
+        // https://developer.mozilla.org/en-US/docs/Web/API/Window/postMessage
+        if (!this.props.serializeMessage) {
+            return data;
+        }
+        // To be on the safe side we can also ignore the browser's built-in serialization feature
+        // and serialize the data manually.
         if (typeof data === "object") {
             return JSON.stringify(data);
         } else if (typeof data === "string") {
@@ -79,6 +86,7 @@ class IframeComm extends Component {
 }
 
 IframeComm.defaultProps = {
+    serializeMessage: true,
     targetOrigin: "*",
     postMessageData: ""
 };
@@ -115,6 +123,7 @@ IframeComm.propTypes = {
         in the iframe so you can parse it accordingly.
      */
     postMessageData: PropTypes.any.isRequired,
+    serializeMessage: PropTypes.bool,
     topic: PropTypes.string,
     /*
         Always provide a specific targetOrigin, not *, if you know where the other window's document should be located. Failing to provide a specific target discloses the data you send to any interested malicious site.
