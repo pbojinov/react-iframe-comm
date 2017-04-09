@@ -30,11 +30,11 @@ class IframeComm extends Component {
         const { handleReady } = this.props;
         if (handleReady) {
             handleReady();
-            // TODO: Look into doing a syn-ack TCP-like handshake
-            //       to make sure iFrame is ready to REALLY accept messages, not just loaded.
-            // send intial props when iframe loads
-            this.sendMessage(this.props.postMessageData);
         }
+        // TODO: Look into doing a syn-ack TCP-like handshake
+        //       to make sure iFrame is ready to REALLY accept messages, not just loaded.
+        // send intial props when iframe loads
+        this.sendMessage(this.props.postMessageData);
     }
     serializePostMessageData(data) {
         // serialize data since postMessage accepts a string only message
