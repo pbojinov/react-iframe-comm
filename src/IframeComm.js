@@ -69,7 +69,6 @@ class IframeComm extends Component {
         );
         return (
             <iframe
-                id="_iframe"
                 ref={el => {
                     this._frame = el;
                 }}
