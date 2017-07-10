@@ -100,7 +100,7 @@ IframeComm.propTypes = {
         React Supported Attributes
         https://facebook.github.io/react/docs/dom-elements.html#all-supported-html-attributes
         Note: attributes are camelCase, not all lowercase as usually defined.
-    */
+    **/
     attributes: PropTypes.shape({
         allowFullScreen: PropTypes.oneOfType([
             PropTypes.string,
