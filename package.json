@@ -23,7 +23,8 @@
   "dependencies": {
     "@kadira/storybook-deployer": "^1.2.0",
     "react": "^15.4.2",
-    "react-dom": "^15.4.2"
+    "react-dom": "^15.4.2",
+    "prop-types": "^15.5.7"
   },
   "devDependencies": {
     "@kadira/storybook": "^2.21.0",

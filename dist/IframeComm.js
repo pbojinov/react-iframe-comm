@@ -14,6 +14,10 @@ var _react = require("react");
 
 var _react2 = _interopRequireDefault(_react);
 
+var _propTypes = require("prop-types");
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -147,21 +151,21 @@ IframeComm.propTypes = {
         https://facebook.github.io/react/docs/dom-elements.html#all-supported-html-attributes
         Note: attributes are camelCase, not all lowercase as usually defined.
     */
-    attributes: _react.PropTypes.shape({
-        allowFullScreen: _react.PropTypes.oneOfType([_react.PropTypes.string, _react.PropTypes.bool]),
-        frameBorder: _react.PropTypes.oneOfType([_react.PropTypes.string, _react.PropTypes.number]),
-        height: _react.PropTypes.oneOfType([_react.PropTypes.string, _react.PropTypes.number]),
-        name: _react.PropTypes.string,
-        scrolling: _react.PropTypes.string,
+    attributes: _propTypes2.default.shape({
+        allowFullScreen: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.bool]),
+        frameBorder: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number]),
+        height: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number]),
+        name: _propTypes2.default.string,
+        scrolling: _propTypes2.default.string,
         // https://www.html5rocks.com/en/tutorials/security/sandboxed-iframes/
-        sandbox: _react.PropTypes.string,
-        srcDoc: _react.PropTypes.string,
-        src: _react.PropTypes.string.isRequired,
-        width: _react.PropTypes.oneOfType([_react.PropTypes.string, _react.PropTypes.number])
+        sandbox: _propTypes2.default.string,
+        srcDoc: _propTypes2.default.string,
+        src: _propTypes2.default.string.isRequired,
+        width: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number])
     }),
 
     // Callback function called when iFrame sends the parent window a message.
-    handleReceiveMessage: _react.PropTypes.func,
+    handleReceiveMessage: _propTypes2.default.func,
 
     /*    
         Callback function called when iframe loads. 
@@ -169,7 +173,7 @@ IframeComm.propTypes = {
         To ensure communication code in your iframe is totally loaded,
         you can implement a syn-ack TCP-like handshake using `postMessageData` and `handleReceiveMessage`.
     */
-    handleReady: _react.PropTypes.func,
+    handleReady: _propTypes2.default.func,
 
     /*
         You can pass it anything you want, we'll serialize to a string
@@ -177,19 +181,19 @@ IframeComm.propTypes = {
         If you use an object, you need to follow the same naming convention
         in the iframe so you can parse it accordingly.
      */
-    postMessageData: _react.PropTypes.any.isRequired,
+    postMessageData: _propTypes2.default.any.isRequired,
 
     /*
         Enable use of the browser's built-in structured clone algorithm for serialization
         by settings this to `false`. 
         Default is `true`, using our built in logic for serializing everything to a string.
     */
-    serializeMessage: _react.PropTypes.bool,
+    serializeMessage: _propTypes2.default.bool,
 
     /*
         Always provide a specific targetOrigin, not *, if you know where the other window's document should be located. Failing to provide a specific target discloses the data you send to any interested malicious site.
      */
-    targetOrigin: _react.PropTypes.string
+    targetOrigin: _propTypes2.default.string
 };
 
 exports.default = IframeComm;
