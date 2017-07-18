@@ -1,6 +1,6 @@
 {
   "name": "react-iframe-comm",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "description": "A React component for communicating between a parent window and an iframe.",
   "main": "dist/IframeComm.js",
   "author": "Petar Bojinov <petarbojinov@gmail.com>",
