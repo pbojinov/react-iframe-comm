@@ -21,12 +21,12 @@
   ],
   "license": "MIT",
   "dependencies": {
-    "@kadira/storybook-deployer": "^1.2.0",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
     "prop-types": "^15.5.7"
   },
   "devDependencies": {
+    "@kadira/storybook-deployer": "^1.2.0",    
     "@kadira/storybook": "^2.21.0",
     "@kadira/storybook-addon-knobs": "^1.7.1",
     "@kadira/storybook-addon-notes": "^1.0.1",
