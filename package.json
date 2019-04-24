@@ -22,8 +22,6 @@
   "license": "MIT",
   "dependencies": {
     "@kadira/storybook-deployer": "^1.2.0",
-    "react": "^15.4.2",
-    "react-dom": "^15.4.2",
     "prop-types": "^15.5.7"
   },
   "devDependencies": {
@@ -36,7 +34,13 @@
     "babel-preset-es2015": "^6.24.0",
     "babel-preset-react": "^6.23.0",
     "babel-preset-stage-0": "^6.22.0",
+    "react": "^15.4.2",
+    "react-dom": "^15.4.2",
     "react-scripts": "0.9.5"
+  },
+  "peerDependencies": {
+    "react": "^15.4.2",
+    "react-dom": "^15.4.2"
   },
   "scripts": {
     "start": "react-scripts start",
