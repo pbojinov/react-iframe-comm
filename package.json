@@ -22,9 +22,10 @@
   "license": "MIT",
   "dependencies": {
     "@kadira/storybook-deployer": "^1.2.0",
+    "@types/react": "^16.9.17",
+    "prop-types": "^15.5.7",
     "react": "^15.4.2",
-    "react-dom": "^15.4.2",
-    "prop-types": "^15.5.7"
+    "react-dom": "^15.4.2"
   },
   "devDependencies": {
     "@kadira/storybook": "^2.21.0",
@@ -47,5 +48,7 @@
     "storybook": "start-storybook -p 9009 -s public",
     "build-storybook": "build-storybook -s public",
     "deploy-storybook": "storybook-to-ghpages"
-  }
+  },
+  "typings": "./src/IframeComm.d.ts",
+  "types": "./src/IframeComm.d.ts"
 }
