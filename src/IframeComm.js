@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from 'prop-types';
+import { atLeastOneRequired } from './custom.proptypes'
 
 class IframeComm extends Component {
     constructor() {
@@ -93,6 +94,11 @@ IframeComm.defaultProps = {
     postMessageData: ""
 };
 
+const atLeastOne = atLeastOneRequired({
+    name: PropTypes.string,
+    src: PropTypes.string
+})
+
 IframeComm.propTypes = {
     /*
         Iframe Attributes
@@ -108,12 +114,12 @@ IframeComm.propTypes = {
         ]),
         frameBorder: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
         height: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-        name: PropTypes.string,
+        name: atLeastOne,
         scrolling: PropTypes.string,
         // https://www.html5rocks.com/en/tutorials/security/sandboxed-iframes/
         sandbox: PropTypes.string,
         srcDoc: PropTypes.string,
-        src: PropTypes.string.isRequired,
+        src: atLeastOne,
         width: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
     }),
     

@@ -1,11 +1,12 @@
 import React from "react";
 import IframeComm from "react-iframe-comm"; // loads build file
 
-const Demo = ({}) => {
+const Demo = ({ }) => {
     // the html attributes to create the iframe with
     // make sure you use camelCase attribute names
     const attributes = {
         src: "https://pbojinov.github.io/iframe-communication/iframe.html",
+        // name: 'Demo',
         width: "100%",
         height: "175"
     };
